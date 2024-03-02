@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Bar</title>
+<style>
+/* CSS styles */
+#search-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--bg-color);
+}
+
+.search-box {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    left: 0;
+    background: var(--bg-color);
+    box-shadow: 4px 4px 20px rgb(15 54 55 / 10%);
+    border: 1px solid var(--main-color);
+    border-radius: 0.5rem;
+    clip-path: circle(0% at 100% 0%);
+}
+
+.search-box.active {
+    clip-path: circle(144% at 100% 0%);
+    transition: 0.4s;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+}
+</style>
+</head>
+<body>
+
+<i class="bx bx-search" id="search-icon"></i>
+<div class="search-box container">
+    <input type="search" id="searchInput" placeholder="Search here...">
+</div>
+
+<script>
+// JavaScript code
+let search = document.querySelector('.search-box');
+
+document.querySelector('#search-icon').onclick = () => {
+    search.classList.toggle('active');
+    menu.classList.remove('active');
+}
+
+let menu = document.querySelector('.navbar');
+
+document.querySelector('#menu-icon').onclick = () => {
+    menu.classList.toggle('active');
+    search.classList.remove('active');
+}
+
+// Hide Menu And Search Box On Scroll
+window.onscroll = () => {
+    menu.classList.remove('active');
+    search.classList.remove('active');
+}
+
+// Handle search functionality
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        let searchQuery = this.value.toLowerCase();
+        switch (searchQuery) {
+            case 'audi':
+                window.location.href = 'audipage.html';
+                break;
+            case 'bmw':
+                window.location.href = 'bmwpage.html';
+                break;
+            case 'toyota':
+                window.location.href = 'toyotapage.html';
+                break;
+            case 'porsche':
+                window.location.href = 'porschepage.html';
+                break;
+            default:
+                alert('No results found for ' + searchQuery);
+        }
+    }
+});
+</script>
+
+</body>
+</html>
